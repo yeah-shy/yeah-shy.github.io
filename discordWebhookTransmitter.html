@@ -117,7 +117,11 @@ position: absolute;  bottom: 0; left: 300px;    right: 0;
      bottom:26px;     
 	 left:15px;
 }
-
+.boxg{
+ position: absolute;  
+ top:0;    
+ left:0;
+}
 //button style
 
 
@@ -207,6 +211,52 @@ button:hover {outline:0;}
 }
 .button:hover {
   background: rgba(255, 255, 255, 0.03);
+}
+//button2
+
+.button__holder {
+  position: absolute;
+  width:80px;
+  height: 80px;
+  top:-1000px;
+  display: -webkit-box;
+
+  background-color: #303030;
+}
+.button__holder:after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(26, 26, 26, 0.7);
+}
+
+.plus {
+  position: relative;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  color: #1a1a1a;
+  background: #ed1c5b;
+  border-radius: 50%;
+  border: none;
+  -webkit-transition: box-shadow 400ms cubic-bezier(0.2, 0, 0.7, 1), -webkit-transform 200ms cubic-bezier(0.2, 0, 0.7, 1);
+  transition: box-shadow 400ms cubic-bezier(0.2, 0, 0.7, 1), -webkit-transform 200ms cubic-bezier(0.2, 0, 0.7, 1);
+  transition: box-shadow 400ms cubic-bezier(0.2, 0, 0.7, 1), transform 200ms cubic-bezier(0.2, 0, 0.7, 1);
+  transition: box-shadow 400ms cubic-bezier(0.2, 0, 0.7, 1), transform 200ms cubic-bezier(0.2, 0, 0.7, 1), -webkit-transform 200ms cubic-bezier(0.2, 0, 0.7, 1);
+}
+.plus:after {
+  content: "+";
+  font-size: 2.5em;
+  line-height: 1.1em;
+}
+.plus:hover {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  box-shadow: 0 0 1px 15px rgba(138, 59, 88, 0.4), 0 0 1px 30px rgba(138, 59, 88, 0.1), 0 0 1px 45px rgba(138, 59, 88, 0.1);
 }
 
 //input style
@@ -412,14 +462,18 @@ div .m2{
     </style>
   </head>
 <body>
-    <div class="box1">
+<div class="button__holder" id="button__holder" style="position:absolute;top:-1000px;weight:100px;height:100px;background:#303030;">
+    <button class="plus" id="plus_btn" onclick="hidemenu()"></button>
+</div>   
+
+   <div class="box1">
 
     </div>
-	<div class="box2">
+	<div class="box2" id="box2">
 	
 	</div>
 	
-  <div class="boxa">
+  <div class="boxa" id="boxa">
 	<label class="has-float-label">
     <input type="url"  id='webhooks'  placeholder="https://discordapp.com/api/webhooks/xxxxxxx"/>
    <span>webhook</span>
@@ -434,7 +488,7 @@ div .m2{
 	
 	</div>
 
-<div class="boxb">
+<div class="boxb" id="boxb">
 
 <textarea placeholder="input message...<@user_id>  <#chennle_id>" name='message' id='message' >
 </textarea> 
@@ -540,14 +594,16 @@ other
 </div>
 <div style=" background-color: #212121;z-index:-2    width: 300px;height: 100%;"></div>
   </div>
-
+   
    
 </body>
   <script>
    let container = document.getElementById('boxf');
    let boxe = document.getElementById('boxe');
+   let hidebtn=document.getElementById('button__holder');
    let defaultHeight = 428;
    let isMinHeight = false;
+   let hidecheck=false;
    let checkimgtime=0;
    let defaultimg=document.getElementById('imf1').src;
    let t1="<div  class='m2'><img src='";
@@ -611,6 +667,7 @@ if(message!=" "&webhooks!=""&name!=""&message!=""){
         if (defaultHeight < 0) {
           isMinHeight = true;
 		  boxe.style.top='40px';
+		  hidebtn.style.top='0px';
           defaultHeight = 0;
           container.style.height = '0px';
 		  var imgtemp=document.querySelector('[name=tools]:checked').value;
@@ -648,6 +705,7 @@ if(message!=" "&webhooks!=""&name!=""&message!=""){
     if (isMinHeight) {
       setTimeout(function() {
 	  	boxe.style.top='-1000px'
+		hidebtn.style.top='-1000px'
         defaultHeight = defaultHeight + 10
         if (defaultHeight > 428) {
           isMinHeight = false
@@ -660,6 +718,29 @@ if(message!=" "&webhooks!=""&name!=""&message!=""){
       }, 1)
     }
 	}
+	
+	function hidemenu(){
+	
+	if(hidecheck){
+             document.getElementById('box2').style.left = '300px';
+	          document.getElementById('boxd').style.left = '330px';
+	          document.getElementById('boxb').style.left = '300px';
+	          document.getElementById('boxa').style.left = '40px';
+	          document.getElementById('boxe').style.left = '70px';
+	          document.getElementById('plus_btn').style.background = '#ed1c5b';
+	hidecheck=false;
+	}else{
+	          document.getElementById('box2').style.left = '0px';
+	          document.getElementById('boxd').style.left = '30px';
+	          document.getElementById('boxb').style.left = '0px';
+	          document.getElementById('boxa').style.left = '-300px';
+	          document.getElementById('boxe').style.left = '-300px';
+			  document.getElementById('plus_btn').style.background = '#ffffff'
+       hidecheck=true;
+			  }
+	
+	}
+	
 	
 	function input_avatar(){
 	document.getElementById('tool-10').checked=true;
