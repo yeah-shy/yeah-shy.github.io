@@ -117,10 +117,15 @@ z-index:-3;
 }
 
 .boxf-2{
-    height: 50px;
    display: inline-block;
+   position:absolute;
+}
+.boxf-3{
+    height: 20px;
+	width: 310px;
    position:relative;
-   bottom:14px;
+  top:-5px;
+  margin-left:80px;
 }
 .boxg{
  position: absolute;  
@@ -572,7 +577,7 @@ div .m2{
 other
 </label>
 <div class="boxf-2">
-   <label class="has-float-label" style="position: relative;" >
+   <label class="has-float-label" >
     <input type="name"  id='avatar_url'  placeholder="http://xxx.png" style="border-radius:2px;width:180px; " onclick="input_avatar()" />
    <span>image url</span>
    </label>
@@ -580,8 +585,8 @@ other
 
 </div>
 
-
-<div class='button' style="height:28px;position: relative;  bottom: 13px;left:90px">
+<div class="boxf-3">
+<div class='button' style="height:28px;">
   <div class='line'></div>
   <div class='line'></div>
   <div class='line'></div>
@@ -590,7 +595,7 @@ other
  <div class='line'></div>
  <button class="send" onclick="setIcon()"  style="height:28px;">setup</button>
 </div>
-
+</div>
 <div class="boxf-1"></div>
 
   </div>
