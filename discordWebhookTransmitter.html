@@ -50,7 +50,7 @@ html, body {
     background-color: #303030;
     height: 100%;
     color: #696969;
-    z-index:-4;    
+    z-index:-6;    
       } 
 
 .boxa {
@@ -107,7 +107,7 @@ z-index:-3;
   
     }
 .boxf-1{
-    width: 310px;
+    width: 100%;
 	height:428px;
 	overflow: hidden;
     background: #141414;
@@ -121,8 +121,7 @@ z-index:-3;
    display: inline-block;
    helght:30px;
    position:relative;
-   top:-52px;
-   left:100px;
+   width:80px;
 }
 .boxf-3{
     height: 20px;
@@ -472,6 +471,14 @@ div .m2{
 
 }
 
+@media screen and (max-width: 700px) {
+		   .box1{width:100%;}
+		   .box2{ position: absolute;    top: 0;    left: 0px;    }
+		   .boxa{ width:100%;    }
+		   #boxf{ width:100%;    }
+           
+ }
+
     </style>
   </head>
 <body>
@@ -479,7 +486,7 @@ div .m2{
     <button class="plus" id="plus_btn" onclick="hidemenu()"></button>
 </div>   
 
-   <div class="box1">
+   <div class="box1" id="box1">
 
     </div>
 	<div class="box2" id="box2">
@@ -582,16 +589,17 @@ div .m2{
 <label class="for-checkbox-tools" for="tool-10">
 other
 </label>
-
-
-</div>
-<div class="boxf-2" >
+<div class="boxf-2"  style="top:-15px">
    <label class="has-float-label" >
-    <input type="name"  id='avatar_url'  placeholder="http://xxx.png" style="border-radius:2px;width:180px; " onclick="input_avatar()" />
+    <input type="name"  id='avatar_url'  placeholder="http://xxx.png" style="border-radius:2px;width:140px; " onclick="input_avatar()" />
    <span>image url</span>
    </label>
  </div>
 
+
+</div>
+<div style="height:40px;width:300px">
+</div>
 <div class="boxf-3">
 <div class='button' style="left:2px;height:28px;">
   <div class='line'></div>
@@ -738,6 +746,7 @@ if(message!=" "&webhooks!=""&name!=""&message!=""){
 	function hidemenu(){
 	
 	if(hidecheck){
+             document.getElementById('box1').style.height = '100%';
              document.getElementById('box2').style.left = '300px';
 	          document.getElementById('boxd').style.left = '330px';
 	          document.getElementById('boxb').style.left = '300px';
@@ -746,10 +755,11 @@ if(message!=" "&webhooks!=""&name!=""&message!=""){
 	          document.getElementById('plus_btn').style.background = '#ed1c5b';
 	hidecheck=false;
 	}else{
+	          document.getElementById('box1').style.height = '0px';
 	          document.getElementById('box2').style.left = '0px';
 	          document.getElementById('boxd').style.left = '30px';
 	          document.getElementById('boxb').style.left = '0px';
-	          document.getElementById('boxa').style.left = '-300px';
+	          document.getElementById('boxa').style.left = '-1000px';
 	          document.getElementById('boxe').style.left = '-300px';
 			  document.getElementById('plus_btn').style.background = '#ffffff'
        hidecheck=true;
